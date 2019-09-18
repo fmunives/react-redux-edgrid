@@ -1,28 +1,18 @@
 import React from "react";
-import axios from "axios";
 import UserGrid from "../organisms/UserGrid";
+import { connect } from "react-redux";
 
-class Users extends React.Component {
-  constructor(props) {
-    super(props);
+const Users = ({ users }) => {
+  console.log(users);
 
-    this.state = {
-      users: []
-    };
-  }
+  return <UserGrid users={users} />;
+};
 
-  componentDidMount = () => {
-    axios.get("https://jsonplaceholder.typicode.com/users").then(response =>
-      this.setState({
-        users: response.data
-      })
-    );
-  };
+const mapStateToProps = state => ({
+  users: state.reducerUsers.users
+});
 
-  render = () => {
-    const { users } = this.state;
-    return <UserGrid users={users} />;
-  };
-}
-
-export default Users;
+export default connect(
+  mapStateToProps,
+  {}
+)(Users);

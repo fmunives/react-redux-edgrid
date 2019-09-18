@@ -10,7 +10,7 @@ const UserCard = ({ username, email, name }) => (
         </div>
       </div>
       <div class="s-main-center">
-        <a class="button--ghost-alert button--tiny" href="#">
+        <a class="button--ghost-alert button--tiny" href="https://ed.team">
           {email}
         </a>
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import CourseCart from "../atoms/CourseCart";
 
 const Menu = () => (
   <header className="main-header">
@@ -36,6 +37,7 @@ const Menu = () => (
                 Usuarios
               </NavLink>
             </li>
+            <CourseCart />
           </ul>
         </nav>
         <div className="main-menu-toggle to-l" id="main-menu-toggle"></div>

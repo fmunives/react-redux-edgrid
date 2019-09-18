@@ -1,23 +1,33 @@
 import React, { useState } from "react";
+import useCourse from "../customHooks/useCourse";
 
-const Course = () => {
-  const [state, setState] = useState({
-    cursoActual: {
-      id: 1,
-      title: "SAP 2000 Básico / Intermedio",
-      image: "https://fmunives.github.io/GrupoVG/img/portfolio/cursos/sap.jpg",
-      image_level:
-        "https://cdn0.iconfinder.com/data/icons/rewards-and-badges-1/64/level-reward-medal-badge-256.png",
-      level: "Intermedio",
-      price: 250
-    }
-  });
+const Course = ({ match }) => {
+  const courses = useCourse(match.params.id);
+
+  const [message, setMessage] = useState("Sin mensajes");
+
+  const MyMessage = m => {
+    setMessage(m.target.value);
+  };
 
   return (
-    <div className="ed-grid">
-      <h3 className="l-cols-2">Curso de: {state.cursoActual.title} </h3>
-      <img src={state.cursoActual.image} alt={state.cursoActual.title} />
-      <p>Level: {state.cursoActual.level} </p>
+    <div className="ed-grid container m-grid-3">
+      <div className="ed-item">
+        <div className="ed-grid">
+          <h3 className="l-cols-2">Curso de: {courses.title} </h3>
+          <img className="l-cols-4" src={courses.image} alt={courses.title} />
+          <p className="cols-1">Level: {courses.level} </p>
+        </div>
+        <div className="ed-grid m-center">
+          <h3>{message}</h3>
+          <input
+            className="l-cols-3"
+            type="text"
+            placeholder="Ingresa tu comentario"
+            onChange={MyMessage.bind(this)}
+          />
+        </div>
+      </div>
     </div>
   );
 };

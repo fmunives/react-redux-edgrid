@@ -6,17 +6,27 @@ import Banner from "./organisms/Banner";
 import Courses from "./pages/Courses";
 import Users from "./pages/Users";
 import Form from "./pages/Form";
+import Course from "./pages/Course";
+import { Provider } from "react-redux";
+import store from "../redux/store";
+import { getToList, getToListUsers } from "../redux/actionCreator";
+
+store.dispatch(getToList());
+store.dispatch(getToListUsers());
 
 const App = () => (
-  <Router>
-    <Menu />
-    <Switch>
-      <Route path="/" exact component={Banner} />
-      <Route path="/cursos" component={Courses} />
-      <Route path="/formulario" component={Form} />
-      <Route path="/usuarios" component={Users} />
-    </Switch>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <Menu />
+      <Switch>
+        <Route path="/" exact component={Banner} />
+        <Route path="/cursos/:id" component={Course} />
+        <Route path="/cursos" component={Courses} />
+        <Route path="/formulario" component={Form} />
+        <Route path="/usuarios" component={Users} />
+      </Switch>
+    </Router>
+  </Provider>
 );
 
 export default App;
